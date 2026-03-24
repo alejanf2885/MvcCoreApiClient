@@ -1,0 +1,61 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#btnpersonas').click(function () {
+                $.ajax({
+                    url: 'https://apipersonasanf-g2bkgjfrcec3evg2.francecentral-01.azurewebsites.net/api/personas',
+                    method: 'GET',
+                    success: function (data) {
+                        var tableBody = $('#personasTableBody');
+                        tableBody.empty();
+                        data.forEach(function (persona) {
+                            var row = '<tr>' +
+                                '<td>' + persona.id + '</td>' +
+                                '<td>' + persona.nombre + '</td>' +
+                                '<td>' + persona.email + '</td>' +
+                                '<td>' + persona.edad + '</td>' +
+                                '</tr>';
+                            tableBody.append(row);
+                        });
+                    },
+                    error: function (error) {
+                        console.error('Error fetching personas:', error);
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold">Api Personas Client</h1>
+        <p class="text-muted">Listado de personas desde API</p>
+        <button id="btnpersonas" class="btn btn-primary btn-lg mt-3">
+            Cargar Personas
+        </button>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Id</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Edad</th>
+                        </tr>
+                    </thead>
+                    <tbody id="personasTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
