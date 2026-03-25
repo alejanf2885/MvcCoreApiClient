@@ -1,0 +1,63 @@
+﻿<h1 class="text-center my-4">Api Hospitales Cliente</h1>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $('#btnhospitales').click(function () {
+                $.ajax({
+                    url: 'https://apicorehospitalesanf.azurewebsites.net/api/Hospital',
+                    method: 'GET',
+                    success: function (data) {
+                        var tableBody = $('#hospitalesTableBody');
+                        tableBody.empty();
+
+                        data.forEach(function (hospital) {
+                            var row = '<tr>' +
+                                '<td>' + hospital.nombre + '</td>' +
+                                '<td>' + hospital.direccion + '</td>' +
+                                '<td>' + hospital.telefono + '</td>' +
+                                '<td><span class="badge bg-success">' + hospital.camas + '</span></td>' +
+                                '</tr>';
+                            tableBody.append(row);
+                        });
+                    },
+                    error: function (error) {
+                        console.error('Error fetching hospitales:', error);
+                    }
+                });
+            });
+        });
+    </script>
+}
+
+<div class="container">
+
+    <div class="text-center mb-4">
+        <button id="btnhospitales" class="btn btn-primary btn-lg shadow">
+            <i class="bi bi-hospital"></i> Cargar Hospitales
+        </button>
+    </div>
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            Lista de Hospitales
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Camas</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hospitalesTableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

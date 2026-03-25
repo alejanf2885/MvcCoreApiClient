@@ -1,0 +1,40 @@
+﻿@model Hospital
+
+<h1 class="text-center my-4">Detalle del Hospital</h1>
+
+<div class="container">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            Información del Hospital
+        </div>
+        <div class="card-body">
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Nombre</label>
+                <p class="form-control">@Model.Nombre</p>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Dirección</label>
+                <p class="form-control">@Model.Direccion</p>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Teléfono</label>
+                <p class="form-control">@Model.Telefono</p>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Número de camas</label>
+                <p>
+                    <span class="badge bg-success fs-6">@Model.Camas</span>
+                </p>
+            </div>
+
+            <div class="text-end">
+                <a asp-action="Index" class="btn btn-secondary">Volver</a>
+            </div>
+
+        </div>
+    </div>
+</div>

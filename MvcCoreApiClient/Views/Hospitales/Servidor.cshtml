@@ -1,0 +1,47 @@
+﻿@model List<Hospital>
+
+<h1 class="text-center my-4">Api Hospitales Cliente</h1>
+
+
+<div class="container">
+
+
+
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            Lista de Hospitales
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Dirección</th>
+                            <th>Teléfono</th>
+                            <th>Camas</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="hospitalesTableBody">
+                        @foreach(Hospital hospital in Model)
+                        {
+                            <tr>
+                                <td>@hospital.Nombre</td>
+                                <td>@hospital.Direccion</td>
+                                <td>@hospital.Telefono</td>
+                                <td><span class="badge bg-success">@hospital.Camas</span></td>
+                                <td>
+                                    <a asp-controller="Hospitales" asp-action="Details" asp-route-id="@hospital.IdHospital">
+                                        Ver detalles
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
